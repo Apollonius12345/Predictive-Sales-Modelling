@@ -2,13 +2,13 @@
 This project focuses on analyzing and forecasting retail sales using a combination of exploratory data analysis (EDA), statistical modeling (SARIMAX), and machine learning techniques (XGBoost & Random Forest). 
 The goal is to identify trends, patterns, and key drivers of sales performance while comparing multiple predictive approaches.
 ## Exploratory Data Analysis (EDA)
-A comprehensive interactive dashboard was created to examine sales behavior across different dimensions. Key insights include:
+A comprehensive interactive dashboard was created to examine sales behavior across different dimensions. 
+Key insights include:
 ### Visualizations
 - **Average Sales Analysis Dashboard** (includes year-wise summaries)
 - **Total Sales Distribution**:
   - By Day of the Week
   - By Year and Quarter
-- **Sales vs Oil Price** over time
 - **Average Sales Per Month**
 - **Scatter Plots** of Transactions vs Sales (for each store)
 - **Box Plots**:
