@@ -55,21 +55,21 @@ To assess if ARIMA family models are suitable:
   - R²: **0.93**
   - MSE: **86,115.6**
 - Good performance, but less robust on higher sales values and more biased toward past averages.
-#### XGBoost Regressor (🚀 **Best Model**)  
+#### XGBoost Regressor (**Best Model**)  
 - Tuned with RandomizedSearchCV + TimeSeriesSplit
 - Performance:
   - **R²: 0.96**
   - **MAE: 14.2%**
   - MSE: **47,748.8**
 > XGBoost had the closest predictions to the diagonal in test scatter plots, indicating **high precision** and **generalization**.
-## 🔍 Feature Importance Analysis
+## Feature Importance Analysis
 ### Top Predictive Features:
-- ✅ `roll_mean_7`: 7-day rolling average of sales (**most influential** across all models)
-- ✅ `lag_1`: Sales from previous day
-- ✅ `transactions`: Number of transactions
-- ✅ `day_of_week`: Temporal pattern indicator
+- `roll_mean_7`: 7-day rolling average of sales (**most influential** across all models)
+- `lag_1`: Sales from previous day
+- `transactions`: Number of transactions
+- `day_of_week`: Temporal pattern indicator
 > Both models relied heavily on **recent sales trends**, showing that rolling averages and lag features are powerful signals for forecasting.
-## ✅ Key Takeaways
+## Key Takeaways
 - Exploratory insights reveal clear seasonality, promotional effects, and cluster/store-specific patterns.
 - **SARIMAX** helps understand general trends but lacks precision in short-term forecasts.
 - **XGBoost** emerges as the **most accurate and robust** model, significantly outperforming Random Forest and SARIMAX.
