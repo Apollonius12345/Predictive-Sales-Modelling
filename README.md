@@ -1,7 +1,7 @@
 # Predictive Sales Modeling
 This project focuses on analyzing and forecasting retail sales using a combination of exploratory data analysis (EDA), statistical modeling (SARIMAX), and machine learning techniques (XGBoost & Random Forest). 
 The goal is to identify trends, patterns, and key drivers of sales performance while comparing multiple predictive approaches.
-## Dashboard & Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 A comprehensive interactive dashboard was created to examine sales behavior across different dimensions. Key insights include:
 ### Visualizations
 - **Average Sales Analysis Dashboard** (includes year-wise summaries)
@@ -74,5 +74,3 @@ To assess if ARIMA family models are suitable:
 - **SARIMAX** helps understand general trends but lacks precision in short-term forecasts.
 - **XGBoost** emerges as the **most accurate and robust** model, significantly outperforming Random Forest and SARIMAX.
 - Incorporating **time-based engineered features** like rolling means and lags plays a critical role in boosting predictive accuracy.
-
-## 📁 Project Struct
