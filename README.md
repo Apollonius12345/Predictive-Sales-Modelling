@@ -38,10 +38,10 @@ To assess if ARIMA family models are suitable:
   - **Differencing** to remove trends
   - **KPSS Test** and **ADF Test**
 > These tests confirmed that differencing was necessary to make the series stationary, validating the use of ARIMA.
-> **SARIMAX Results**:
-- MAE: ~23.4%
-- R² Score: 0.76
-- Suitable for general trend modeling but less accurate for dynamic forecasts compared to ML models.
+- **SARIMAX Results**:
+  - MAE: ~23.4%
+  - R² Score: 0.76
+  - Suitable for general trend modeling but less accurate for dynamic forecasts compared to ML models.
 ### Feature Engineering
 - **Label Encoding** of Categorical Features
 - **Feature Normalization**
