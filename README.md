@@ -32,36 +32,66 @@ Key insights include:
   - Day of Year
   - **Periodogram** (frequency-based decomposition)
 ## Modeling & Forecasting
+
 ### Time-Series Statistical Model – SARIMAX
-To assess if ARIMA family models are suitable:
+To assess if ARIMA-family models were suitable for the sales series:
 - **Stationarity Checks**:
-  - **Differencing** to remove trends
-  - **KPSS Test** and **ADF Test**
-> These tests confirmed that differencing was necessary to make the series stationary, validating the use of ARIMA.
-- **SARIMAX Results**:
-  - MAE: ~23.4%
-  - R² Score: 0.76
-  - Suitable for general trend modeling but less accurate for dynamic forecasts compared to ML models.
+  - Applied **Differencing** to remove trends.
+  - Conducted **KPSS Test** and **ADF Test** to validate stationarity.
+> Results confirmed the need for differencing, justifying the use of SARIMAX.
+
+- **Model Selection (AIC Minimization)**:
+  - Best model identified: **SARIMAX(2, 1, 2) × (0, 0, 2, 7)** with intercept.
+  - Seasonal period set to 7 to capture weekly seasonality patterns.
+  - Achieved **AIC = 81.40**, indicating strong model fit among tested configurations.
+
+- **Performance (Test Set)**:
+  | Metric        | Value   |
+  |---------------|---------|
+  | MAE           | ~23.4%  |
+  | R² Score      | 0.76    |
+  | Log-Likelihood| -32.698 |
+
+- **Interpretation**:
+  - Suitable for modeling general sales trends and capturing weekly seasonality.
+  - However, exhibited smoother forecasts and lagged responsiveness to sharp fluctuations, making it less accurate than ML-based models for highly dynamic sales patterns.
+
+---
+
 ### Feature Engineering
 - **Label Encoding** of Categorical Features
 - **Feature Normalization**
-- Creation of **Lag Features** and **Rolling Mean Features (e.g., `roll_mean_7`)**
-- Time-based features like **Day of Week**, **Month**, etc.
-### Machine Learning Models
-#### Random Forest Regressor
-- Tuned using `RandomizedSearchCV` and **Time Series Cross-Validation**
-- Performance:
-  - MAE: **18.9%**
-  - R²: **0.93**
-  - MSE: **86,115.6**
-- Good performance, but less robust on higher sales values and more biased toward past averages.
+- Creation of **Lag Features** and **Rolling Mean Features** (e.g., `roll_mean_7`)
+- Time-based features such as **Day of Week**, **Month**, etc.
+
+## Machine Learning Models
+
+#### Random Forest Regressor  
+- Tuned using `RandomizedSearchCV` and **Time Series Cross-Validation**  
+- **Performance:**  
+
+| Split         | MAE    | MSE        | R²   |
+|---------------|--------|------------|------|
+| **Train**     | 73.81  | 89,351.27  | 0.93 |
+| **Validation**| 75.72  | 313,944.52 | 0.79 |
+| **Test**      | 74.49  | 80,119.08  | 0.93 |
+
+- Delivered reasonable accuracy but showed higher bias toward historical averages and less robustness for predicting higher sales values.  
+
 #### XGBoost Regressor (**Best Model**)  
-- Tuned with RandomizedSearchCV + TimeSeriesSplit
-- Performance:
-  - **R²: 0.96**
-  - **MAE: 14.2%**
-  - MSE: **47,748.8**
+- Tuned with `RandomizedSearchCV` + `TimeSeriesSplit`  
+- **Performance:**  
+
+| Split         | MAE    | MSE        | R²   |
+|---------------|--------|------------|------|
+| **Train**     | 51.03  | 27,794.89  | 0.98 |
+| **Validation**| 58.25  | 292,430.43 | 0.81 |
+| **Test**      | 56.72  | 45,395.51  | 0.96 |
+
+- Consistently outperformed Random Forest with ~24% lower MAE and better fit across all sales ranges.  
+- Predictions closely aligned with the ideal diagonal in scatter plots, indicating **high precision** and **strong generalization**.
 > XGBoost had the closest predictions to the diagonal in test scatter plots, indicating **high precision** and **generalization**.
+
 ## Feature Importance Analysis
 ### Top Predictive Features:
 - `roll_mean_7`: 7-day rolling average of sales (**most influential** across all models)
